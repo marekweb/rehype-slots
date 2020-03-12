@@ -4,7 +4,7 @@
 
 ## Use
 
-Take this HTML fragment:
+Take this HTML fragment which contains `<slot>` elements:
 
 ```html
 <h1>
@@ -70,3 +70,22 @@ Output:
   <div>Anonymous</div>
 </article>
 ```
+
+## API
+
+### `rehype().use(rehypeSlots[, options])`
+
+Replace slot elements with the provide values.
+
+##### `options`
+
+###### `options.values`
+
+Object containing slot names and slot values. (`object`, default: `{}`)
+
+###### `options.unwrap`
+
+Boolean flag indicating whether to unwrap the default value of slots for which
+no value is provided in `options.values`. (`boolean`, default: `true`)
+
+[rehype]: https://github.com/rehypejs/rehype
