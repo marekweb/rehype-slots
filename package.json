@@ -1,10 +1,16 @@
 {
   "name": "rehype-slots",
+  "repository": "marekweb/github",
+  "license": "MIT",
   "version": "0.1.0",
   "scripts": {
     "format": "prettier --write --prose-wrap always '**/*.{js,md}'",
     "test": "node test"
   },
+  "files": [
+    "index.js",
+    "hast-util-slots.js"
+  ],
   "dependencies": {
     "unist-util-flatmap": "^1.0.0"
   },
