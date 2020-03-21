@@ -2,6 +2,8 @@
 
 [**rehype**][rehype] plugin to replace slot elements in an HTML fragment.
 
+Replacement value is provided as a [**HAST**][hast] tree
+
 ## Installation
 
 The module is experimental and isn't published on NPM yet, but can be installed
@@ -33,7 +35,8 @@ Take this HTML fragment which contains `<slot>` elements:
 </article>
 ```
 
-Provide the slot values to be inserted:
+Provide the slot values to be inserted, in this case using
+[`hastscript`][hastscript] to create the HAST tree:
 
 ```js
 const h = require("hastscript");
@@ -109,8 +112,10 @@ Boolean flag indicating whether to use the slot element's contents as the
 default value if no value is provided in `options.values`. Effectively this
 unwraps (`boolean`, default: `true`)
 
-[rehype]: https://github.com/rehypejs/rehype
-
 ## License
 
 MIT © Marek Zaluski
+
+[rehype]: https://github.com/rehypejs/rehype
+[hast]: https://github.com/syntax-tree/hast
+[hastscript]: https://github.com/syntax-tree/hastscript
