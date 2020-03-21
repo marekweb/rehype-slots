@@ -2,7 +2,7 @@ const hastUtilSlots = require("./hast-util-slots");
 
 function rehypeSlots({ values = {}, unwrap }) {
   return function(tree) {
-    hastUtilSlots(tree, values, unwrap);
+    return hastUtilSlots(tree, values, unwrap);
   };
 }
 
