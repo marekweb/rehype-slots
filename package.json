@@ -2,24 +2,47 @@
   "name": "rehype-slots",
   "repository": "marekweb/rehype-slots",
   "license": "MIT",
-  "version": "0.1.0",
+  "version": "0.2.0",
+  "type": "module",
   "scripts": {
-    "format": "prettier --write --prose-wrap always '**/*.{js,md}'",
-    "test": "node test"
+    "check": "npm run check:types && npm run check:lint && npm run check:format",
+    "check:types": "npm run check:types:hast-util-slots && npm run check:types:rehype-slots && npm run check:types:test",
+    "check:types:hast-util-slots": "tsc --noEmit --emitDeclarationOnly false -p hast-util-slots",
+    "check:types:rehype-slots": "tsc --noEmit --emitDeclarationOnly false -p rehype-slots",
+    "check:types:test": "tsc --noEmit --emitDeclarationOnly false -p test",
+    "check:lint": "eslint .",
+    "check:format": "prettier --check '**/*.{js,ts,md}'",
+    "fix": "npm run fix:lint && npm run fix:format",
+    "fix:lint": "eslint --fix .",
+    "fix:format": "prettier --write '**/*.{js,ts,md}'",
+    "build": "esbuild lib/rehype-slots.ts --bundle --outfile=dist/rehype-slots.js",
+    "build:types": "tsc --build",
+    "test": "node --import tsx --test '**/*.test.ts'"
   },
+  "exports": "./dist/lib/rehype-slots.js",
   "files": [
-    "index.js",
-    "hast-util-slots.js"
+    "dist/*"
   ],
+  "types": "./dist/lib/rehype-slots.d.ts",
+    "prettier": {
+      "proseWrap": "always"
+    },
   "dependencies": {
     "unist-util-flatmap": "^1.0.0"
   },
   "devDependencies": {
-    "hastscript": "^5.1.2",
-    "prettier": "^1.19.1",
-    "rehype-format": "^3.0.0",
-    "rehype-parse": "^6.0.2",
-    "rehype-stringify": "^6.0.1",
-    "unified": "^8.4.2"
+    "@types/hast": "^3.0.4",
+    "@types/node": "^20.11.17",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "esbuild": "^0.20.0",
+    "hastscript": "^9.0.0",
+    "prettier": "^3.2.5",
+    "rehype-format": "^5.0.0",
+    "rehype-parse": "^9.0.0",
+    "rehype-stringify": "^10.0.0",
+    "tsx": "^4.7.1",
+    "typescript": "^5.3.3",
+    "unified": "^11.0.4"
   }
 }

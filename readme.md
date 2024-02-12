@@ -6,15 +6,17 @@ Replacement value is provided as a [**HAST**][hast] tree
 
 ## Installation
 
-The module is experimental and isn't published on NPM yet, but can be installed
-directly from the GitHub repository.
+This package is [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c). 
+
+Install the
+[rehype-slots npm module](https://www.npmjs.com/package/rehype):
 
 ```sh
-npm install marekweb/rehype-slots
+npm install rehype-slots
 ```
 
 ```js
-const rehypeSlots = require("rehype-slots");
+import rehypeSlots from "rehype-slots";
 ```
 
 ## Example Usage
@@ -39,14 +41,14 @@ Provide the slot values to be inserted, in this case using
 [`hastscript`][hastscript] to create the HAST tree:
 
 ```js
-const h = require("hastscript");
+import { h } from "hastscript";
 
 const values = {
   // a string that will create a text node
   title: "A Tale Of Two Cities",
 
   // a HAST tree that will be inserted
-  quote: h("p", "It was the best of times...")
+  quote: h("p", "It was the best of times..."),
 };
 ```
 
@@ -58,11 +60,11 @@ If a `<slot>` element is encountered but no value was provided for it, then the
 element's contents will be used as a default value.
 
 ```js
-const unified = require("unified");
-const rehypeParse = require("rehype-parse");
-const rehypeFormat = require("rehype-format");
-const rehypeStringify = require("rehype-stringify");
-const rehypeSlots = require("rehype-slots");
+import { unified } from "unified";
+import rehypeParse from "rehype-parse";
+import rehypeFormat from "rehype-format";
+import rehypeStringify from "rehype-stringify";
+import rehypeSlots from "rehype-slots";
 
 unified()
   .use(rehypeParse, { fragment: true })
@@ -70,7 +72,7 @@ unified()
   .use(rehypeFormat)
   .use(rehypeStringify)
   .process(input)
-  .then(output => {
+  .then((output) => {
     console.log(output.contents);
   });
 ```
@@ -91,26 +93,58 @@ Notice in the output:
 
 - the `title` slot was replaced with a string
 - the `quote` slot was replaced with an HTML tree (HAST)
-- no value was provide for the `author` slot, so the slot element's contents
+- no value was provided for the `author` slot, so the slot element's contents
   were used as the default value.
 
 ## API
 
 ### `rehype().use(rehypeSlots[, options])`
 
-Replace slot elements with the provide values.
+Replace slot elements with the provided values.
 
-##### `options`
+##### Basic options
 
 ###### `options.values`
 
 Object containing slot names and slot values. (`object`, default: `{}`)
 
-###### `options.unwrap`
+Allowed value types:
 
-Boolean flag indicating whether to use the slot element's contents as the
-default value if no value is provided in `options.values`. Effectively this
-unwraps (`boolean`, default: `true`)
+- String (will be converted to a HAST text node)
+- HAST node
+- HAST root (document, fragment or template)
+- Array of HAST nodes
+- Function that returns any of the above. The function will be called with the
+  slot name as the first argument.
+
+###### `options.fallbackBehavior`
+
+Defines the behavior when a slot is not found in the values object. It can be
+one of the following:
+
+- "unwrap": Replace the slot with its own children, i.e. unwrap it. This is the
+  default.
+- "remove": Remove the slot element entirely.
+- "keep": Do nothing, keep the slot element as it is.
+
+###### `options.replacer`
+
+A function that will be called for each slot whose name was not found in the
+values object. It will be called with `(slotName, slotElement)` and can return a
+value to replace the slot with, or return undefined to use the fallback
+behavior.
+
+##### Advanced options
+
+###### `options.slotTagName`
+
+Tag name of the element to replace, if you want to use a different element than
+`slot` which is the default.
+
+###### `options.slotNameAttribute`
+
+Name of the attribute on the slot element that holds the slot's name. The
+default is `name`.
 
 ## License
 
