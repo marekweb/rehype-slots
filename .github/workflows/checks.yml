@@ -4,6 +4,7 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+
 jobs:
   tests:
     name: Tests on ${{matrix.node}}
@@ -15,10 +16,10 @@ jobs:
           node-version: ${{matrix.node}}
       - run: npm install
       - run: npm test
-
     strategy:
       matrix:
         node: [20, 21]
+
   typecheck:
     name: Type check
     runs-on: ubuntu-latest
