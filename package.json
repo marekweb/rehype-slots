@@ -7,10 +7,10 @@
   "scripts": {
     "check": "npm run check:lint && npm run check:format",
     "check:lint": "eslint .",
-    "check:format": "prettier --check '**/*.{js,ts,md}'",
+    "check:format": "prettier --check '**/*.{js,ts,md,yml}'",
     "fix": "npm run fix:lint && npm run fix:format",
     "fix:lint": "eslint --fix .",
-    "fix:format": "prettier --write '**/*.{js,ts,md}'",
+    "fix:format": "prettier --write '**/*.{js,ts,md,yml}'",
     "build": "npm run build:types && npm run build:bundle",
     "build:types": "tsc --build",
     "build:bundle": "esbuild rehype-slots/rehype-slots.ts --bundle --platform=neutral \"--external:./node_modules/*\" --outfile=dist/rehype-slots/rehype-slots.ts",
