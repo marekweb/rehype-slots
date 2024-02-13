@@ -6,10 +6,10 @@ Replacement value is provided as a [**HAST**][hast] tree
 
 ## Installation
 
-This package is [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c). 
+This package is
+[ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c).
 
-Install the
-[rehype-slots npm module](https://www.npmjs.com/package/rehype):
+Install the [rehype-slots npm module](https://www.npmjs.com/package/rehype):
 
 ```sh
 npm install rehype-slots
@@ -145,6 +145,14 @@ Tag name of the element to replace, if you want to use a different element than
 
 Name of the attribute on the slot element that holds the slot's name. The
 default is `name`.
+
+## Contributing
+
+Submit an issue if you find a bug or want to request a feature. Pull requests
+are welcome.
+
+See [Developing](developing.md) for more information on how to develop this
+project.
 
 ## License
 

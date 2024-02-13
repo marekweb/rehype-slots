@@ -21,8 +21,8 @@
 		"outDir": "./dist"
 	},
 	"references": [
+		{ "path": "./hast-util-slots" },
 		{ "path": "./rehype-slots" },
-		{ "path": "./hast-util-slots"},
 		{ "path": "./test" }
 	]
 }

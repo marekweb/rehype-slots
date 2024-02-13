@@ -5,23 +5,20 @@
   "version": "0.2.0",
   "type": "module",
   "scripts": {
-    "check": "npm run check:types && npm run check:lint && npm run check:format",
-    "check:types": "npm run check:types:hast-util-slots && npm run check:types:rehype-slots && npm run check:types:test",
-    "check:types:hast-util-slots": "tsc --noEmit --emitDeclarationOnly false -p hast-util-slots",
-    "check:types:rehype-slots": "tsc --noEmit --emitDeclarationOnly false -p rehype-slots",
-    "check:types:test": "tsc --noEmit --emitDeclarationOnly false -p test",
+    "check": "npm run check:lint && npm run check:format",
     "check:lint": "eslint .",
     "check:format": "prettier --check '**/*.{js,ts,md}'",
     "fix": "npm run fix:lint && npm run fix:format",
     "fix:lint": "eslint --fix .",
     "fix:format": "prettier --write '**/*.{js,ts,md}'",
-    "build": "esbuild lib/rehype-slots.ts --bundle --outfile=dist/rehype-slots.js",
+    "build": "npm run build:types && npm run build:bundle",
     "build:types": "tsc --build",
+    "build:bundle": "esbuild rehype-slots/rehype-slots.ts --bundle --platform=neutral \"--external:./node_modules/*\" --outfile=dist/rehype-slots/rehype-slots.ts",
     "test": "node --import tsx --test '**/*.test.ts'"
   },
   "exports": "./dist/lib/rehype-slots.js",
   "files": [
-    "dist/*"
+    "dist/rehype-slots"
   ],
   "types": "./dist/lib/rehype-slots.d.ts",
     "prettier": {
