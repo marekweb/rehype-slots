@@ -13,25 +13,22 @@
     "fix:format": "prettier --write '**/*.{js,ts,md,yml}'",
     "build": "npm run build:types && npm run build:bundle",
     "build:types": "tsc --build",
-    "build:bundle": "esbuild rehype-slots/rehype-slots.ts --bundle --platform=neutral \"--external:./node_modules/*\" --outfile=dist/rehype-slots/rehype-slots.ts",
+    "build:bundle": "esbuild rehype-slots/rehype-slots.ts --bundle --platform=neutral \"--external:./node_modules/*\" --outfile=dist/rehype-slots/rehype-slots.js",
     "test": "node --import tsx --test '**/*.test.ts'"
   },
-  "exports": "./dist/lib/rehype-slots.js",
+  "exports": "./dist/rehype-slots/rehype-slots.js",
   "files": [
     "dist/rehype-slots"
   ],
-  "types": "./dist/lib/rehype-slots.d.ts",
-    "prettier": {
-      "proseWrap": "always"
-    },
-  "dependencies": {
-    "unist-util-flatmap": "^1.0.0"
+  "types": "./dist/rehype-slots/rehype-slots.d.ts",
+  "prettier": {
+    "proseWrap": "always"
   },
   "devDependencies": {
     "@types/hast": "^3.0.4",
     "@types/node": "^20.11.17",
-    "@typescript-eslint/eslint-plugin": "^6.21.0",
-    "@typescript-eslint/parser": "^6.21.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.1",
+    "@typescript-eslint/parser": "^7.0.1",
     "esbuild": "^0.20.0",
     "hastscript": "^9.0.0",
     "prettier": "^3.2.5",
@@ -41,5 +38,8 @@
     "tsx": "^4.7.1",
     "typescript": "^5.3.3",
     "unified": "^11.0.4"
+  },
+  "dependencies": {
+    "unist-util-visit": "^5.0.0"
   }
 }
