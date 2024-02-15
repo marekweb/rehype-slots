@@ -13,7 +13,7 @@
     "fix:format": "prettier --write '**/*.{js,ts,md,yml}'",
     "build": "npm run build:types && npm run build:bundle",
     "build:types": "tsc --build",
-    "build:bundle": "esbuild rehype-slots/rehype-slots.ts --bundle --platform=neutral \"--external:./node_modules/*\" --outfile=dist/rehype-slots/rehype-slots.js",
+    "build:bundle": "esbuild rehype-slots/rehype-slots.ts --bundle --platform=neutral --packages=external --outfile=dist/rehype-slots/rehype-slots.js",
     "test": "node --import tsx --test '**/*.test.ts'"
   },
   "exports": "./dist/rehype-slots/rehype-slots.js",
