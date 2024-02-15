@@ -93,7 +93,6 @@ export default function hastUtilReplaceSlots(
         const replacementNodes = wrapNodeArray(foundValueForSlot);
 
         // Replace the slot with the replacement nodes
-        console.log(`Replacing slot "${name}" with`, replacementNodes);
         parent.children.splice(
           index,
           1,
